@@ -19,7 +19,7 @@ storiesOf("Contact List App/Header", module).add("default", () =>(
 ));
 
 storiesOf("Contact List App/Filter Controls", module).add("default", () => (
-  <FilterControls/>
+  <FilterControls onUserInput={action("Search criteria changes")}/>
 ));
 
 storiesOf("Contact List App/Contact", module).add("default", () => (
