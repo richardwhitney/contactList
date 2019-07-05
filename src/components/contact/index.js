@@ -8,7 +8,7 @@ class Contact extends Component {
     return (
       <div className="col-sm-3">
         <div className="card">
-          <img className="card-img-tag centre" alt={this.props.contact.name} src={this.props.contact.picture.thumbnail}/>
+          <img className="card-img-tag center" alt={this.props.contact.name} src={this.props.contact.picture.thumbnail}/>
           <div className="card-body">
             <h5 className="card-title">{`${this.props.contact.name.first} ${this.props.contact.name.last}`}</h5>
             <p key="email">
