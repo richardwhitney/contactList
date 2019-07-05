@@ -33,7 +33,7 @@ class Contact extends Component {
     this.setState({ status: "", previousDetails: { email, phone } });
     api.update(this.state.previousDetails.phone, updatedEmail, updatedPhone);
   };
-  handlerDelete = () => this.setState({ status: 'del'});
+  handleDelete = () => this.setState({ status: 'del'});
   handlerConfirm = (e) => {
     e.preventDefault();
     this.props.deleteHandler(this.state.phone);
