@@ -33,6 +33,11 @@ class Contact extends Component {
     this.setState({ status: "", previousDetails: { email, phone } });
     api.update(this.state.previousDetails.phone, updatedEmail, updatedPhone);
   };
+  handlerDelete = () => this.setState({ status: 'del'});
+  handlerConfirm = (e) => {
+    e.preventDefault();
+    this.props.deleteHandler(this.state.phone);
+  };
   render() {
     let activeButtons = buttons.normal;
     let leftButtonHandler = this.handleEdit;
@@ -43,6 +48,12 @@ class Contact extends Component {
       activeButtons = buttons.edit;
       leftButtonHandler = this.handleSave;
       rightButtonHandler = this.handleCancel;
+    }
+    else if (this.state.status == 'del') {
+      cardColor = "bg-warning";
+      activeButtons = buttons.delete;
+      leftButtonHandler = this.handleCancel;
+      rightButtonHandler = this.handlerConfirm;
     }
     return (
       <div className="col-sm-3">
