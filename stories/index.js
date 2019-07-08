@@ -8,6 +8,8 @@ import ContactList from '../src/components/contactList/';
 import { action } from "@storybook/addon-actions";
 import PublicProfile from '../src/components/contactPublic/publicProfile';
 import ContactPrivateDetails from '../src/components/contactPrivate/';
+import ContactPublicDetails from '../src/components/contactPublic';
+import { MemoryRouter } from "react-router-dom";
 
 const sample = {
   gender: "female",
@@ -70,11 +72,13 @@ storiesOf("Contact List App/Filter Controls", module).add("default", () => (
   <FilterControls onUserInput={action("Search criteria changes")}/>
 ));
 
-storiesOf("Contact List App/Contact", module).add("default", () => (
+storiesOf("Contact List App/Contact", module).addDecorator(story => (
+  <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>)).add("default", () => (
   <Contact contact={sample} deleteHandler={action('Delete confirmed')}/>
 ));
 
-storiesOf("Contact List App/Contact List", module).add("default", () => {
+storiesOf("Contact List App/Contact List", module).addDecorator(story => (
+  <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>)).add("default", () => {
   const samples = [sample, sample, sample, sample, sample];
   return <ContactList contacts={samples}/>
 });
@@ -85,4 +89,9 @@ storiesOf("Contact List App/Contact Page/PublicProfile", module).add("default", 
 
 storiesOf("Contact List App/Contact Page/ContactPrivate", module).add("default", () => (
   <ContactPrivateDetails user={sample}/>
+));
+
+storiesOf("Contact List App/Contact Page/ContactPublic", module).addDecorator(story => (
+  <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>)).add("default", () => (
+  <ContactPublicDetails user={sample}/>
 ));
