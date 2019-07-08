@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component, Fragment} from "react";
 import Header from "./components/header/";
 import ContactList from "./components/contactList/";
 import FilterControls from "./components/filterControls/";
@@ -8,18 +8,7 @@ import _ from "lodash";
 
 class App extends Component {
   state = { search: "", gender: "all" };
-  componentDidMount() {
-    request.get("https://randomuser.me/api/?results=50").end((error, res) => {
-      if (res) {
-        let { results: contacts } = JSON.parse(res.text);
-        api.initialize(contacts);
-        this.setState({});
-      }
-      else {
-        console.log(error);
-      }
-    });
-  }
+
   handleChange = (type, value) => {
     type === "name"
     ? this.setState({ search: value })
@@ -41,11 +30,11 @@ class App extends Component {
     let sortedContacts = _.sortBy(filteredContacts, c => c.name.last);
 
     return (
-      <div className="jumbotron">
-        <Header noContacts={sortedContacts.length} />
+      <Fragment>
+        <Header noContacts={sortedContacts.length}/>
         <FilterControls onUserInput={this.handleChange}/>
         <ContactList contacts={sortedContacts} deleteHandler={this.deleteContact}/>
-      </div>
+      </Fragment>
     );
   }
 }

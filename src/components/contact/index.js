@@ -4,6 +4,7 @@ import "../../fontawesome";
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import buttons from "../../config/buttonsConfig";
 import api from '../../dataStore/stubAPI';
+import {Link} from "react-router-dom";
 
 class Contact extends Component {
   state = {
@@ -58,7 +59,11 @@ class Contact extends Component {
     return (
       <div className="col-sm-3">
         <div className={`card ${cardColor}`}>
-          <img className="card-img-tag center" alt={this.props.contact.name} src={this.props.contact.picture.thumbnail}/>
+          <Link
+            to={`/contacts/${this.props.contact.phone}${this.props.contact.cell}`}
+            >
+            <img className="card-img-tag center" alt={this.props.contact.name} src={this.props.contact.picture.thumbnail}/>
+          </Link>
           <div className="card-body">
             <h5 className="card-title">{`${this.props.contact.name.first} ${this.props.contact.name.last}`}</h5>
             {this.state.status === "edit" ? (
