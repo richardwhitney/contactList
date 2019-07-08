@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-//import { capitalize } from "../../util";
+import { capitalize } from "../../util";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default ({ user }) => {
-  const address = `${user.location.street}, ${user.location.city}, ${user.location.state}`;
+  const address = capitalize(`${user.location.street}, ${user.location.city}, ${user.location.state}`);
   const dob = user.dob.date.split("-");
   const birthdate = `${dob[2].substr(0, 2)}/${dob[1]}/${dob[0]}  `;
   return (
