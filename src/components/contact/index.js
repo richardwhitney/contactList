@@ -50,7 +50,7 @@ class Contact extends Component {
       leftButtonHandler = this.handleSave;
       rightButtonHandler = this.handleCancel;
     }
-    else if (this.state.status == 'del') {
+    else if (this.state.status === 'del') {
       cardColor = "bg-warning";
       activeButtons = buttons.delete;
       leftButtonHandler = this.handleCancel;
